@@ -1,6 +1,7 @@
 {
   "root": true,
   "extends": [
-    "@mistjs/eslint-config-vue-jsx"
+    "@mistjs/eslint-config-vue-jsx",
+    "prettier"
   ]
 }

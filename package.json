@@ -13,7 +13,15 @@
     "@mistjs/eslint-config-vue-jsx": "^0.0.5",
     "eslint": "^8.35.0",
     "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",
     "vite": "^4.1.4"
+  },
+  "lint-staged": {
+    "*.{js,vue,jsx}": [
+      "prettier --write .",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
