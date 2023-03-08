@@ -1,0 +1,15 @@
+{
+  "name": "mr_liu_comp",
+  "version": "1.0.0",
+  "description": "component",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Mr_liu",
+  "license": "ISC",
+  "devDependencies": {
+    "@mistjs/eslint-config-vue-jsx": "^0.0.5",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4",
+    "vite": "^4.1.4"
+  }
+}
