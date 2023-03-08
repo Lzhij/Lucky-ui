@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": [
     "@mistjs/eslint-config-vue-jsx"
   ]
