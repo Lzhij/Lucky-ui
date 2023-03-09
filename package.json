@@ -4,18 +4,31 @@
   "description": "component",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write \"./**/*.{less,html,vue,ts,js,json,md}\"",
+    "test": "vitest",
+    "dev": "vitepress dev site",
+    "build:site": "vitepress build site",
+    "preview": "vitepress preview site"
   },
   "author": "Mr_liu",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "@mistjs/eslint-config-vue-jsx": "^0.0.5",
+    "@mistjs/tsconfig-vue": "^0.0.3",
+    "@types/node": "^18.14.6",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "eslint": "^8.35.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",
-    "vite": "^4.1.4"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vite-plugin-vitepress-demo": "^2.0.0-alpha.8",
+    "vitepress": "^1.0.0-alpha.50",
+    "vitest": "^0.29.2"
   },
   "lint-staged": {
     "*.{js,vue,jsx}": [
@@ -23,5 +36,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "dependencies": {
+    "vue": "^3.2.0"
   }
 }
