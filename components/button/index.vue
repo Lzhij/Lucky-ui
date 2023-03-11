@@ -1,15 +1,14 @@
 <template>
-  <div class="SmileButton"></div>
+  <div class="ly-button"></div>
 </template>
-
-<script lang="ts">
+<script>
 export default {
-    name: 'smile-button'
+    name: 'ly-button'
 };
 </script>
-<script setup>
-import { } from 'vue';
 
+<script lang="ts" setup>
+import { } from 'vue';
 </script>
 
 <style lang="less" scoped></style>

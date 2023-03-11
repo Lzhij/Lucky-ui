@@ -1,7 +1,8 @@
-// import type { App } from 'vue';
+import type { App } from 'vue';
+import Button from './button';
 
 export default {
-    // install(app: App) {
-    //     app.component();
-    // }
+    install(app: App) {
+        app.component(Button.name, Button);
+    }
 };
