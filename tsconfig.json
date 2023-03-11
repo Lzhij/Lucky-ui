@@ -1,3 +1,31 @@
 {
-  "extends": "@mistjs/tsconfig-vue"
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strictNullChecks": false,
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "paths": {
+      "@smile-ui": [
+        "components/index.ts"
+      ],
+      "@smile-ui/com": [
+        "components/*"
+      ]
+    }
+  },
+  "include": [
+    "components",
+  ],
+  "exclude": [
+    "**/tests/**",
+    "**/dist",
+    "node_modules"
+  ],
 }
