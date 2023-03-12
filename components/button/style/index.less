@@ -1,44 +1,98 @@
 @import url('../../global.less');
 
 .ly-button {
+  @button-bg-default: @color-white;
+  @button-bg-primary: @color-primary;
+  @button-bg-success: @color-success;
+  @button-bg-warning: @color-warning;
+  @button-bg-danger: @color-danger;
+
+  @button-bg-default-hover: @color-white;
+  @button-bg-primary-hover: @color-primary;
+  @button-bg-success-hover: @color-success;
+  @button-bg-warning-hover: @color-warning;
+  @button-bg-danger-hover: @color-danger;
+
+  @button-bg-default-active: @color-white;
+  @button-bg-primary-active: @color-primary;
+  @button-bg-success-active: @color-success;
+  @button-bg-warning-active: @color-warning;
+  @button-bg-danger-active: @color-danger;
+
+  @button-text-default: @text-color-primary;
+  @button-text-primary: @text-color-white;
+  @button-text-link: @text-color-link;
+  @button-text-white: @text-color-white;
+
+  @button-text-primary-active: @text-color-regular;
+
+  @button-border-color: @border-color-dark;
+  @button-border-color-active: @color-primary;
+
   display: inline-flex;
   align-items: center;
-  padding: 0 8px;
-  margin: 4px;
+  padding: 0 16px;
   height: @size-normal;
+  line-height: @size-normal;
+  color: @button-text-default;
+  background-color: @button-bg-default;
   border-radius: @border-radius;
-  background-color: @color-white;
-  color: @text-color-black;
+  transition: background .2s, color .2s;
+  & + .ly-button {
+    margin-left: 12px;
+  }
+  cursor: pointer;
   &-small {
+    padding: 0 8px;
     height: @size-small;
     font-size: @text-size-small;
   }
   &-large {
-    padding: 0 16px;
+    padding: 0 24px;
     height: @size-large;
     font-size: @text-size-large;
   }
   &-default {
-    border: 1px solid @border-color-dark;
+    border: 1px solid @button-border-color;
+    &:active {
+      border-color: @button-border-color-active;
+    }
   }
   &-primary {
-    background-color: @color-primary;
-    color: @text-color-white;
+    background-color: @button-bg-primary;
   }
   &-success {
-    background-color: @color-success;
-    color: @text-color-white;
+    background-color: @button-bg-success;
   }
   &-warning {
-    background-color: @color-warning;
-    color: @text-color-white;
+    background-color: @button-bg-warning;
   }
   &-danger {
-    background-color: @color-danger;
-    color: @text-color-white;
+    background-color: @button-bg-danger;
+  }
+  &-primary,
+  &-success,
+  &-warning,
+  &-danger {
+    color: @button-text-white;
+    &:active {
+      color: @button-text-primary-active;
+    }
   }
   &-link {
-    color: @color-primary;
+    height: unset;
+    line-height: unset;
+    color: @button-text-link;
     background-color: transparent;
+  }
+  &-disabled {
+    cursor: not-allowed;
+  }
+  &-loading {
+    cursor: default;
+  }
+  &-disabled,
+  &-loading {
+    opacity: .6;
   }
 }
