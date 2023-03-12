@@ -21,6 +21,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "vue/multi-word-component-names": "off",
     "vue/singleline-html-element-content-newline": "off",
     "vue/multiline-html-element-content-newline": "off",
     "vue/no-v-html": "off",
@@ -103,7 +104,7 @@
     ], //nodejs 处理错误
     "indent": [ // 设置空格为4与Volar统一
       2,
-      4,
+      2,
       {
         "SwitchCase": 1
       }

@@ -1,0 +1,44 @@
+@import url('../../global.less');
+
+.ly-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  margin: 4px;
+  height: @size-normal;
+  border-radius: @border-radius;
+  background-color: @color-white;
+  color: @text-color-black;
+  &-small {
+    height: @size-small;
+    font-size: @text-size-small;
+  }
+  &-large {
+    padding: 0 16px;
+    height: @size-large;
+    font-size: @text-size-large;
+  }
+  &-default {
+    border: 1px solid @border-color-dark;
+  }
+  &-primary {
+    background-color: @color-primary;
+    color: @text-color-white;
+  }
+  &-success {
+    background-color: @color-success;
+    color: @text-color-white;
+  }
+  &-warning {
+    background-color: @color-warning;
+    color: @text-color-white;
+  }
+  &-danger {
+    background-color: @color-danger;
+    color: @text-color-white;
+  }
+  &-link {
+    color: @color-primary;
+    background-color: transparent;
+  }
+}

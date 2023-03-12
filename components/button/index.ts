@@ -1,3 +1,10 @@
-import Button from './index.vue';
+import { App } from 'vue';
+import Button from './src/index.vue';
+import './style/index.less';
 
-export default Button;
+export default {
+  install(app: App) {
+    app.component(Button.name, Button);
+  }
+};
+

@@ -1,3 +1,5 @@
 node_modules
-dis
-site/.vitepress/cache
+dist
+cache
+.vscode
+package-lock.json
