@@ -1,6 +1,7 @@
 const btnTypes = [
   'default',
   'primary',
+  'success',
   'warning',
   'danger',
   'link'
@@ -13,11 +14,13 @@ const btnSizes = [
 ];
 
 export const ButtonProps = {
+
   type: {
     type: String,
     default: 'default',
     values: btnTypes
   },
+
   size: {
     type: String,
     default: 'normal',
