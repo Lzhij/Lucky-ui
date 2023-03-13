@@ -41,4 +41,4 @@ export const ButtonProps = {
   }
 };
 
-export const ButtonEmits = ['onClick'];
+export const ButtonEmits = ['click'];
