@@ -9,13 +9,13 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { ButtonProps, ButtonEmits } from './button';
+import { buttonProps, buttonEmits } from './button';
 import { prefixClass } from '../../_util/index';
 
 export default defineComponent({
   name: 'LyButton',
-  props: ButtonProps,
-  emits: ButtonEmits,
+  props: buttonProps,
+  emits: buttonEmits,
   setup(props, { emit }) {
     const btnCls = 'ly-button';
 
