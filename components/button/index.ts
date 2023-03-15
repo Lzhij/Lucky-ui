@@ -1,6 +1,6 @@
 import { App } from 'vue';
 import Button from './src/button.vue';
-import './style/index.less';
+import './style/button.less';
 
 export {
   Button
