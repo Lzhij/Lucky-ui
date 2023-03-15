@@ -1,0 +1,36 @@
+@import url('../../global.less');
+
+.ly-button-group {
+  @button-group-border-radius: @border-radius;
+  @button-group-border-color: @color-white;
+  display: flex;
+  .ly-button {
+    position: relative;
+    margin: 0;
+    border-radius: 0;
+    margin-right: -1px;
+    &:active {
+      z-index: 1;
+    }
+    &-primary,
+    &-success,
+    &-info,
+    &-warning,
+    &-danger,
+    &-info {
+      &:nth-child(n + 2) {
+        border-left-color: @button-group-border-color;
+      }
+      &:nth-last-child(n + 2) {
+        border-right-color: @button-group-border-color;
+      }
+    }
+    &:first-child {
+      border-radius: @button-group-border-radius 0 0 @button-group-border-radius;
+    }
+    &:last-child {
+      margin-right: 0;
+      border-radius: 0 @button-group-border-radius @button-group-border-radius 0;
+    }
+  }
+}
