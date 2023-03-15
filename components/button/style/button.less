@@ -16,6 +16,8 @@
   @button-border-color: @border-color-dark;
   @button-border-color-active: @color-primary;
 
+  @button-box-shadow: @box-shadow-dark;
+
   display: inline-flex;
   align-items: center;
   padding: 0 16px;
@@ -24,7 +26,7 @@
   color: @button-text-default;
   background-color: @button-bg-default;
   border-radius: @border-radius;
-  transition: opacity 0.2s, color 0.2s;
+  transition: opacity 0.3s, box-shadow 0.3s;
   & + .ly-button {
     margin-left: 12px;
   }
@@ -57,30 +59,36 @@
   }
   &-primary {
     background-color: @button-bg-primary;
+    border-color: @button-bg-primary;
   }
   &-success {
     background-color: @button-bg-success;
+    border-color: @button-bg-success;
   }
   &-info {
     background-color: @button-bg-info;
+    border-color: @button-bg-info;
   }
   &-warning {
     background-color: @button-bg-warning;
+    border-color: @button-bg-warning;
   }
   &-danger {
     background-color: @button-bg-danger;
+    border-color: @button-bg-danger;
   }
   &-primary,
   &-success,
+  &-info,
   &-warning,
   &-danger,
   &-info {
+    border-width: 1px;
+    border-style: solid;
     color: @button-text-white;
-    &:hover {
-      opacity: 0.7;
-    }
     &:active {
-      opacity: 1.3;
+      opacity: .8;
+      box-shadow: 0 0 5px @button-box-shadow;
     }
   }
   &-link {
@@ -124,7 +132,7 @@
     &:active,
     &:hover {
       opacity: 0.6;
-      border-color: @button-border-color;
+      box-shadow: unset;
     }
   }
 }

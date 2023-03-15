@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "allowJs": true,
     "strictNullChecks": false,
+    "isolatedModules": true,
     "lib": [
       "ESNext",
       "DOM",
@@ -21,8 +22,7 @@
     }
   },
   "include": [
-    "components",
-    "site"
+    "components"
   ],
   "exclude": [
     "**/tests/**",

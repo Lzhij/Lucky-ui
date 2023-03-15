@@ -1,3 +1,5 @@
+import type { ExtractPropTypes } from 'vue';
+
 const btnTypes = [
   'default',
   'primary',
@@ -14,14 +16,12 @@ const btnSizes = [
   'large'
 ] as const;
 
-export const ButtonProps = {
-
+export const buttonProps = {
   type: {
     type: String,
     default: 'default',
     values: btnTypes
   },
-
   size: {
     type: String,
     default: 'normal',
@@ -41,4 +41,10 @@ export const ButtonProps = {
   }
 };
 
-export const ButtonEmits = ['click'];
+export const buttonEmits = {
+  click: (e: Event) => void 0
+};
+
+export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
+
+export type ButtonEmits = typeof buttonEmits;
