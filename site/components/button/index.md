@@ -17,21 +17,36 @@ prev: false
 
 <demo src="../../demos/button/loading.vue"></demo>
 
-## Api
+## 按钮组
+
+<demo src="../../demos/button/group.vue"></demo>
+
+## ButtonApi
 | 属性 | 说明 | 类型 | 默认值 |
-| - |:--:| :-:| -:|
+| - | - | - | - |
 | type | 类型 | `default, primary, success, warning, danger, link` | default |
 | size | 尺寸 | `normal, small, large` | normal |
 | round | 是否为圆角 | boolean | false |
 | disabled | 是否禁用 | boolean | false |
 | loading | 是否为加载中z状态 | boolean | false |
 
-## Slot
+## ButtonSlot
 | 插槽名 | 说明 |
-| - |:--:|
+| - | - |
 | default | 默认加载内容 |
 
-## Event
+## ButtonEvent
 | 事件名称 | 事件参数 | 说明 |
-| - |:--:|:--:|
+| - | - | - |
 | onClick | e: Event | 点击事件 |
+
+## ButtonGroupApi
+| 属性 | 说明 | 类型 | 默认值 |
+| - | - | - | - |
+| type | 类型 | `default, primary, success, warning, danger` | default |
+| size | 尺寸 | `normal, small, large` | normal |
+
+## Button Slot
+| 插槽名 | 说明 |
+| - | - |
+| default | 默认插槽 |

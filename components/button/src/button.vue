@@ -8,9 +8,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, inject } from 'vue';
 import { buttonProps, buttonEmits } from './button';
 import { prefixClass } from '../../_util/index';
+import { buttonGroupContextKey } from './const';
 
 export default defineComponent({
   name: 'LyButton',
@@ -21,9 +22,16 @@ export default defineComponent({
 
     const prefix = prefixClass(btnCls);
 
+    const groupProps = inject(
+      buttonGroupContextKey,
+      void 0
+    );
+
     const classList = computed(() => {
-      const typeCls = prefix + props.type;
-      const sizeCls = prefix + props.size;
+      const type = groupProps ? groupProps.type : props.type;
+      const size = groupProps ? groupProps.size : props.size;
+      const typeCls = prefix + type;
+      const sizeCls = prefix + size;
       const disabledCls = prefix + 'disabled';
       const loadingCls = prefix + 'loading';
       const roundCls = prefix + 'round';
@@ -33,7 +41,7 @@ export default defineComponent({
         [sizeCls]: true,
         [disabledCls]: props.disabled,
         [loadingCls]: props.loading,
-        [roundCls]: props.round
+        [roundCls]: !groupProps && props.round
       };
     });
 

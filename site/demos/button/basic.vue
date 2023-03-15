@@ -25,8 +25,8 @@ title: 基础按钮
     <LyButton round>type</LyButton>
     <LyButton round type="primary">primary</LyButton>
     <LyButton round type="success">success</LyButton>
+    <LyButton round type="info">info</LyButton>
     <LyButton round type="warning">warning</LyButton>
     <LyButton round type="danger">danger</LyButton>
-    <LyButton round type="link">link</LyButton>
   </div>
 </template>
