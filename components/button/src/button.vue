@@ -45,7 +45,7 @@ export default defineComponent({
       };
     });
 
-    const onClickBtn = (e: Event) => {
+    const onClickBtn = (e: MouseEvent) => {
       if (props.disabled || props.loading) return;
       emit('click', e);
     };
