@@ -4,36 +4,50 @@ export interface WithInstall {
   install: (app: App) => unknown
 }
 
+export type functionType = (...args: any[]) => any
+
 export const prefixClass = (className: string) => {
   return `${className}-`;
 };
 
-export const checkParamType = (t: unknown): string => Object.prototype.toString.call(t).split(' ')[1].toLowerCase();
+export const checkParamType = (t: unknown): string => {
+  const res = (Object
+    .prototype
+    .toString
+    .call(t) as string)
+    .split(' ')[1]
+    .toLowerCase();
+  return res.slice(0, res.length - 1);
+};
 
-export const isUndefined = (v: unknown) => {
+export const isUndefined = (v: unknown): v is void => {
   return checkParamType(v) === 'undefined';
 };
 
-export const isNull = (v: unknown) => {
+export const isNull = (v: unknown): v is null => {
   return checkParamType(v) === 'null';
 };
 
-export const isNumber = (v: unknown) => {
+export const isBoolean = (v: unknown): v is boolean => {
+  return checkParamType(v) === 'boolean';
+}
+;
+export const isNumber = (v: unknown): v is number => {
   return checkParamType(v) === 'number';
 };
 
-export const isString = (v: unknown) => {
+export const isString = (v: unknown): v is string => {
   return checkParamType(v) === 'string';
 };
 
-export const isArray = (v: unknown) => {
+export const isArray = (v: unknown): v is Array<any> => {
   return checkParamType(v) === 'array';
 };
 
-export const isObject = (v: unknown) => {
+export const isObject = (v: unknown): v is object => {
   return checkParamType(v) === 'object';
 };
 
-export const isFunction = (v: unknown) => {
+export const isFunction = (v: unknown): v is functionType => {
   return checkParamType(v) === 'function';
 };

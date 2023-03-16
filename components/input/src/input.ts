@@ -1,20 +1,35 @@
-export type ValueType = number | string;
+export type ValueType = string;
 
 export type ValidatorFn = (val: ValueType) => boolean | string;
+
+export type ValidateState = '' | 'success' | 'failed';
 
 export const updateEvent = 'update:modelValue';
 
 export const inputProps = {
   modelValue: {
-    type: [Number, String],
+    type: String,
     default: ''
   },
+  trim: {
+    type: Boolean,
+    default: false
+  },
   validator: {
-    type: Function
+    type: Function,
+    default: () => true
   },
   disabled: {
     type: Boolean,
     default: false
+  },
+  required: {
+    type: Boolean,
+    default: false
+  },
+  emptyMessage: {
+    type: String,
+    default: '该输入项不允许为空'
   }
 };
 

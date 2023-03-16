@@ -1,3 +1,78 @@
+@import url('../../global.less');
+
 .ly-input {
+  @input-size-normal: @size-normal;
+  @input-size-small: @size-small;
+  @input-size-large: @size-large;
+
+  @input-text-size-normal: @text-size-normal;
+  @input-text-size-small: @text-size-small;
+
+  @input-border-color: @border-color-darker;
+  @input-border-color-focus: @color-primary;
+  @input-border-radius: @border-radius;
+
+  @input-valid-err-color: @color-error;
+
   
+  display: inline-flex;
+  align-items: center;
+  height: @input-size-normal;
+  line-height: @input-size-normal;
+  font-size: @input-text-size-normal;
+  width: 200px;
+
+  &-small {
+    height: @input-size-small;
+    line-height: @input-size-small;
+    font-size: @input-text-size-small;
+  }
+
+  &-large {
+    height: @input-size-large;
+    line-height: @input-size-large;
+  }
+  
+  &-wrapper {
+    position: relative;
+    display: inline-flex;
+    flex: 1;
+    align-items: center;
+    padding: 0 4px 0 10px;
+    height: 100%;
+    border: 1px solid @input-border-color;
+    border-radius: @input-border-radius;
+    transition: border-color .3s;
+    box-sizing: border-box;
+    
+    &-focus {
+      border-color: @input-border-color-focus;
+    }
+    &-valid-error {
+      border-color: @input-valid-err-color;
+    }
+    .ly-input-native {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 30px;
+      font-size: inherit;
+      border: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      box-sizing: border-box;
+      &:focus-visible {
+        outline: none;
+        outline-offset: none;
+      }
+    }
+    .ly-input-err-msg {
+      position: absolute;
+      left: 4px;
+      top: 100%;
+      font-size: @input-text-size-small;
+      color: @input-valid-err-color;
+    }
+  }
 }

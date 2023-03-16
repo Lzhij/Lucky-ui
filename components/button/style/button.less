@@ -22,10 +22,12 @@
   align-items: center;
   padding: 0 16px;
   height: @size-normal;
+  line-height: @size-normal;
   color: @button-text-default;
   background-color: @button-bg-default;
   border-radius: @border-radius;
   transition: opacity 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
   & + .ly-button {
     margin-left: 12px;
   }
@@ -36,6 +38,7 @@
   &-small {
     padding: 0 8px;
     height: @size-small;
+    line-height: @size-small;
     font-size: @text-size-small;
     &-round {
       border-radius: (@size-small / 2);
@@ -44,6 +47,7 @@
   &-large {
     padding: 0 24px;
     height: @size-large;
+    line-height: @size-large;
     font-size: @text-size-large;
     &-round {
       border-radius: (@size-large / 2);
