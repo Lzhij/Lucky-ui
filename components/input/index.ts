@@ -7,3 +7,5 @@ export default {
     app.component(Input.name, Input);
   }
 };
+
+export type { InputInstance } from './src/instance';

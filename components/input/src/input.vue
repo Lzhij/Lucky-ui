@@ -13,7 +13,7 @@
 import { useValidate } from '../../_util/validate';
 import { defineComponent, ref, watch, shallowRef, onMounted, computed } from 'vue';
 import { isUndefined } from '../../_util';
-import { inputProps, inputEmits, ValueType, updateEvent } from './input';
+import { inputProps, inputEmits, updateEvent } from './input';
 
 export default defineComponent({
   name: 'LyInput',
@@ -21,7 +21,7 @@ export default defineComponent({
   props: inputProps,
   emits: inputEmits,
   setup(props, { emit, expose }) {
-    const inputV = ref<ValueType>('');
+    const inputV = ref('');
     const inputEl = shallowRef<HTMLInputElement>();
     const validateMessage = ref<string>('');
     const isIptFocus = ref(false);
@@ -65,7 +65,7 @@ export default defineComponent({
       }
     );
 
-    const triggerUpdate = (v: ValueType) => {
+    const triggerUpdate = (v: string) => {
       emit(updateEvent, v);
       emit('input', v);
     };

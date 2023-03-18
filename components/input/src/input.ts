@@ -1,8 +1,6 @@
 import { isString } from '../../_util';
 import { ExtractPropTypes } from 'vue';
 
-export type ValueType = string;
-
 export const updateEvent = 'update:modelValue';
 
 export const inputProps = {
