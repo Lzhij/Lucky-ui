@@ -1,8 +1,7 @@
+import { isString } from '../../_util';
+import { ExtractPropTypes } from 'vue';
+
 export type ValueType = string;
-
-export type ValidatorFn = (val: ValueType) => boolean | string;
-
-export type ValidateState = '' | 'success' | 'failed';
 
 export const updateEvent = 'update:modelValue';
 
@@ -16,8 +15,7 @@ export const inputProps = {
     default: false
   },
   validator: {
-    type: Function,
-    default: () => true
+    type: Function
   },
   disabled: {
     type: Boolean,
@@ -33,11 +31,14 @@ export const inputProps = {
   }
 };
 
-export const inputEmits = [
-  updateEvent,
-  'click',
-  'focus',
-  'blur',
-  'input',
-  'change'
-];
+export const inputEmits = {
+  [updateEvent]: (value: string) => isString(value),
+  'input': (value: string) => isString(value),
+  'focus': (e: FocusEvent) => e instanceof FocusEvent,
+  'blur': (e: FocusEvent) => e instanceof FocusEvent,
+  'change': (value: string) => isString(value)
+};
+
+export type InputPropsType = ExtractPropTypes<typeof inputProps>;
+
+export type InputEmitsType = typeof inputEmits;

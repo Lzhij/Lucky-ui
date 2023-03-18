@@ -4,7 +4,7 @@ export interface WithInstall {
   install: (app: App) => unknown
 }
 
-export type functionType = (...args: any[]) => any
+export type FunctionType = (...args: any[]) => any
 
 export const prefixClass = (className: string) => {
   return `${className}-`;
@@ -48,6 +48,6 @@ export const isObject = (v: unknown): v is object => {
   return checkParamType(v) === 'object';
 };
 
-export const isFunction = (v: unknown): v is functionType => {
+export const isFunction = (v: unknown): v is FunctionType => {
   return checkParamType(v) === 'function';
 };
