@@ -51,3 +51,21 @@ export const isObject = (v: unknown): v is object => {
 export const isFunction = (v: unknown): v is FunctionType => {
   return checkParamType(v) === 'function';
 };
+
+export const cloneDeep = <T>(v: T): T => {
+  let data: unknown;
+  if (isArray(v)) {
+    data = v.map((item) => cloneDeep(item));
+  } else if (isObject(v)) {
+    data = {};
+    for (const k in v) {
+      data[k] = cloneDeep(v[k]);
+    }
+  } else if (isFunction(v)) {
+    data = v.bind(data);
+  } else {
+    data = v;
+  }
+
+  return data as T;
+};
