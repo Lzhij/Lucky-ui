@@ -106,6 +106,7 @@ export default defineComponent({
     const isValidFailed = computed(() => validateState.value === 'failed');
 
     expose({
+      inputEl,
       validate,
       clearValid,
       reset,
@@ -116,6 +117,9 @@ export default defineComponent({
       iptWrapperClasses,
       inputV,
       inputEl,
+      validate,
+      clearValid,
+      reset,
       isValidFailed,
       validateMessage,
       handleInput,

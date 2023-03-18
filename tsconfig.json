@@ -13,16 +13,17 @@
       "DOM.Iterable"
     ],
     "paths": {
-      "@lucky-ui": [
+      "@lucky-ui/*": [
         "components/index.ts"
       ],
-      "@lucky-ui/com": [
+      "@lucky-ui/com/*": [
         "components/*"
       ]
     }
   },
   "include": [
     "components",
+    "site",
     "env.d.ts"
   ],
   "exclude": [

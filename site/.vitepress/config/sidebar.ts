@@ -18,6 +18,7 @@ export const getSidebar = (): DefaultTheme.Sidebar => {
         items: [
           {
             text: 'Input 输入框',
+            link: '/components/input/'
           }
         ]
       }
