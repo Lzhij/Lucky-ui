@@ -22,7 +22,8 @@
     }
   },
   "include": [
-    "components"
+    "components",
+    "env.d.ts"
   ],
   "exclude": [
     "**/tests/**",
