@@ -20,7 +20,7 @@ const defaultProps = {
 export type ValidatePropsType = ExtractPropTypes<typeof defaultProps>;
 
 export const useValidate = (inputV: Ref<string>, props: ValidatePropsType, onFailed: FunctionType, onSuccess?: FunctionType) => {
-  let isUnValid = true;
+  let isUnValid: boolean | null = null;
   const validateState = ref<ValidateState>('');
 
   const validate = () => {
@@ -41,7 +41,7 @@ export const useValidate = (inputV: Ref<string>, props: ValidatePropsType, onFai
 
   const handleValidate = async() => {
     const str = inputV.value;
-    if (str === '' && validateState.value === '' && isUnValid) {
+    if (str === '' && validateState.value === '' && isUnValid === true) {
       isUnValid = false;
       return;
     }
