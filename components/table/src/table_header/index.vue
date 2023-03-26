@@ -2,10 +2,10 @@
   <div class="ly-table-header-wrapper">
     <table border="0" cellpadding="0" cellspacing="0" v-for="t in 1" :key="t">
       <colgroup>
-        <col v-for="item in renderConfig.leftCols" :key="item.field">
+        <col v-for="item in renderCols" :key="item.field" :width="item.width + 'px'">
       </colgroup>
       <thead>
-        <tr v-for="(item, index) in renderConfig.left" :key="index">
+        <tr v-for="(item, index) in renderConfig" :key="index">
           <th v-for="sub in item" :key="sub.field" :colspan="sub.colspan" :rowspan="sub.rowspan">
             <div class="ly-table-cell">{{ sub.text }}</div>
           </th>
@@ -17,20 +17,14 @@
 
 <script lang="ts">
 import { TablePropsType, ColsType } from '../table/index';
-import { PropType, reactive, watchEffect } from 'vue';
-import { isArray, cloneDeep } from '../../../_util';
+import { PropType, ref, watchEffect } from 'vue';
+import { cloneDeep } from '../../../_util';
 
-interface RenderItem extends ColsType {
+interface RenderItemType extends ColsType {
   colspan?: number;
   rowspan?: number;
-  children?: RenderItem[];
-}
-
-interface RenderConfigType {
-  left: RenderItem[][];
-  right: RenderItem[][];
-  leftCols: RenderItem[];
-  rightCols: RenderItem[];
+  level?: number;
+  children?: RenderItemType[];
 }
 
 export default {
@@ -39,84 +33,76 @@ export default {
     cols: {
       type: Array as PropType<TablePropsType['cols']>,
       default: () => []
+    },
+    renderCols: {
+      type: Array as PropType<TablePropsType['cols']>,
+      default: () => []
     }
   },
   setup(props) {
-    const renderConfig = reactive<RenderConfigType>({
-      left: [],
-      leftCols: [],
-      right: [],
-      rightCols: []
-    });
-    let maxDept = 0;
+    const renderConfig = ref<RenderItemType[][]>([]);
 
-    const getDept = (cols: ColsType[], dept = 0) => {
-      cols.forEach(t => {
-        if (isArray(t.children)) {
-          dept = getDept(t.children, dept + 1);
+    const getAllColumns = (columns: RenderItemType[], result = [] as RenderItemType[]) => {
+      columns.forEach(column => {
+        result.push(column);
+        if (column.children && column.children.length) {
+          getAllColumns(column.children, result);
         }
       });
-      return dept;
+      return result;
     };
 
-    const getCurrentColSpan = (arr: RenderItem['children']) => {
-      let total = 0;
-      arr.forEach(t => {
-        if (isArray(t?.children) && t.children.length) {
-          total += getCurrentColSpan(t.children);
+    const initHeaderRenderConfig = (columns: RenderItemType[]) => {
+      let maxLevel = 1;
+
+      // 获取最大深度以及设置colspan
+      const computedSpan = (column: RenderItemType, parent?: RenderItemType) => {
+        if (parent) {
+          column.level = parent.level + 1;
+          if (maxLevel < column.level) {
+            maxLevel = column.level;
+          }
+        }
+        if (column.children && column.children?.length) {
+          let colspan = 0;
+          column.children.forEach(subColumn => {
+            computedSpan(subColumn, column);
+            colspan += subColumn.colspan;
+          });
+          column.colspan = colspan;
         } else {
-          total++;
+          column.colspan = 1;
         }
-      });
-      return total;
-    };
+      };
 
-    const setItemSpan = (item: RenderItem, dept: number, renderArr: RenderItem[][], colRenderArr: RenderItem[]) => {
-      const childrenLen = item?.children?.length || 0;
-      if (item.children && childrenLen > 0) {
-        item.colspan = getCurrentColSpan(item.children);
-        item.rowspan = 1;
-        item.children.forEach(subIt => setItemSpan(subIt, dept - 1, renderArr, colRenderArr));
-      } else {
-        colRenderArr.push(item);
-        item.rowspan = dept;
-        item.colspan = 1;
+      columns.forEach(column => {
+        column.level = 1;
+        computedSpan(column, undefined);
+      });
+
+      const rows: RenderItemType[][] = [];
+      for (let i = 0; i < maxLevel; i++) {
+        rows.push([]);
       }
 
-      if (renderArr[maxDept - dept]) {
-        renderArr[maxDept - dept].push(item);
-      } else {
-        renderArr[maxDept - dept] = [item];
-      }
-    };
+      const allColumns = getAllColumns(columns);
 
-    const getConfigLeftAndRight = (cols: ColsType[], dept: number) => {
-      const frozenRender: RenderItem[][] = [];
-      const unFrozenRender: RenderItem[][] = [];
-      const frozenColsRender: RenderItem[] = [];
-      const unFrozenColsRender: RenderItem[] = [];
-      cols.forEach(item => {
-        if (item.frozen) {
-          setItemSpan(item, dept, frozenRender, frozenColsRender);
+      // 设置rowspan
+      allColumns.forEach(column => {
+        if (!column.children) {
+          column.rowspan = maxLevel - column.level + 1;
         } else {
-          setItemSpan(item, dept, unFrozenRender, unFrozenColsRender);
+          column.rowspan = 1;
         }
+        rows[column.level - 1].push(column);
       });
 
-      const hasFrozen = !!frozenRender.length;
-      Object.assign(renderConfig, {
-        left: hasFrozen ? frozenRender : unFrozenRender,
-        right: hasFrozen ? unFrozenRender : [],
-        leftCols: hasFrozen ? frozenColsRender : unFrozenColsRender,
-        rightCols: hasFrozen ? unFrozenColsRender : []
-      });
-      console.log(renderConfig);
+      renderConfig.value = rows;
     };
 
     const getRenderConfig = () => {
       const cols = cloneDeep(props.cols);
-      maxDept = getDept(cols);
-      getConfigLeftAndRight(cols, maxDept);
+      initHeaderRenderConfig(cols);
     };
 
     watchEffect(() => {

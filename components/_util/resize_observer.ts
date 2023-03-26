@@ -1,6 +1,6 @@
-const callbackMap: Map<Element, ObserverCallBackType> = new Map();
-
 export type ObserverCallBackType = (rect: DOMRectReadOnly) => void
+
+const callbackMap: Map<Element, ObserverCallBackType> = new Map();
 
 const observer = new ResizeObserver((entries) => {
   entries.forEach(ent => {
