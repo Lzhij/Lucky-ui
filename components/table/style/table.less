@@ -9,6 +9,7 @@
   @table-body-txt-size: 12px;
 
   @table-header-txt-color: #909399;
+  @table-body-txt-color: #121212;
 
   width: 100%;
   box-sizing: border-box;
@@ -45,16 +46,40 @@
     .ly-table-body-wrapper {
       overflow-x: hidden;
       font-size: @table-body-txt-size;
-        table {
-          width: 100%;
-          table-layout: fixed;
+      table {
+        width: 100%;
+        table-layout: fixed;
+        tbody {
+          tr {
+            td {
+              font-weight: normal;
+              color: @table-body-txt-color;
+              border-right: 1px solid @table-border-color;
+              border-bottom: 1px solid @table-border-color;
+              &:last-child {
+                border-right: 0;
+              }
+              .ly-table-cell {
+                padding: 0 10px;
+                height: @table-body-cell-height;
+                line-height: @table-body-cell-height;
+              }
+            }
+            &:last-child {
+              td {
+                border-bottom: 0;
+              }
+            }
+          }
         }
+      }
     }
     .ly-table-cell {
       width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      box-sizing: border-box;
     }
     td,
     th {

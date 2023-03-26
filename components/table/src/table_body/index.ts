@@ -1,4 +1,4 @@
-<script lang="ts">
+import { isUndefined } from '../../../_util';
 import { computed, defineComponent, h, inject, PropType, toRefs } from 'vue';
 import { TablePropsType, TableToken, DefaultDataItemType } from '../table/index';
 
@@ -19,8 +19,6 @@ export default defineComponent({
 
     const tableProps = computed<TablePropsType>(() => tableCtx.props);
 
-    const tableSlots = computed(() => tableCtx.slots);
-
     const renderColgroup = () => {
       return props.renderCols.map(col => h('col', {
         width: col.width + 'px',
@@ -34,9 +32,9 @@ export default defineComponent({
 
       const getColRenderList = (row: DefaultDataItemType, index: number) => {
         return renderCols.value.map(col => {
-          const slot = tableSlots.value[col.field];
+          const slot = tableCtx.slots[col.field];
           const value = row[col.field];
-          const cellRender = slot ? slot({ row, index, value }) : (row[col.field] || '-');
+          const cellRender = slot ? slot({ row, index, value }) : h('span', { title: value }, isUndefined(value) ? '-' : value);
           return h('td', {}, h(
             'div',
             {
@@ -80,5 +78,3 @@ export default defineComponent({
     ]));
   }
 });
-</script>
-

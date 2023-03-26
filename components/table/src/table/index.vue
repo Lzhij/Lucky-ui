@@ -11,7 +11,7 @@
 import { defineComponent, onMounted, provide, ref, shallowRef, watchEffect, onUnmounted, getCurrentInstance } from 'vue';
 import { tableProps, ColsType, TableToken } from './index';
 import LyTableHeader from '../table_header/index.vue';
-import LyTableBody from '../table_body/index.vue';
+import LyTableBody from '../table_body/index';
 import { cloneDeep } from '../../../_util';
 import { observerDomResize, unBindObserverDomResize } from '../../../_util/resize_observer';
 
