@@ -1,7 +1,7 @@
 <template>
   <div class="ly-table-wrapper ly-table-wrapper-border" ref="tableEl">
     <div class="ly-table-container">
-      <LyTableHeader :cols="cols" :renderCols="renderCols" />
+      <LyTableHeader :cols="cols" :renderCols="renderCols" :align="align" />
       <LyTableBody :renderCols="renderCols" :data="data" />
     </div>
   </div>

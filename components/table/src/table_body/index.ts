@@ -1,4 +1,4 @@
-import { isUndefined } from '../../../_util';
+import { isArray, isUndefined } from '../../../_util';
 import { computed, defineComponent, h, inject, PropType, toRefs } from 'vue';
 import { TablePropsType, TableToken, DefaultDataItemType } from '../table/index';
 
@@ -47,9 +47,18 @@ export default defineComponent({
 
       const getRowRenderList = (rows: DefaultDataItemType[]) => {
         return rows.forEach((row, index) => {
+          const key = row[tableProps.value.idKey];
+          if (tableCtx.expand === 'all' || (isArray(tableCtx.expand) && tableCtx.expand.includes(row))) {
+            row._children = true;
+          }
+
           rowRenderList.push(h('tr', {
-            key: row[tableProps.value.idKey]
+            key
           }, getColRenderList(row, index)));
+
+          if (row._children && isArray(row.children)) {
+            getRowRenderList(row.children as DefaultDataItemType[]);
+          }
         });
       };
 

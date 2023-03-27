@@ -1,6 +1,6 @@
 <template>
   <div class="ly-table-header-wrapper">
-    <table border="0" cellpadding="0" cellspacing="0" v-for="t in 1" :key="t">
+    <table border="0" cellpadding="0" cellspacing="0" v-for="t in 1" :key="t" :align="align">
       <colgroup>
         <col v-for="item in renderCols" :key="item.field" :width="item.width + 'px'">
       </colgroup>
@@ -37,6 +37,10 @@ export default {
     renderCols: {
       type: Array as PropType<TablePropsType['cols']>,
       default: () => []
+    },
+    align: {
+      type: String as PropType<TablePropsType['align']>,
+      default: 'left'
     }
   },
   setup(props) {

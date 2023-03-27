@@ -37,6 +37,9 @@ export const tableProps = {
     type: Boolean,
     default: false
   },
+  expand: {
+    type: [String, Array] as PropType<'all' | (string | number)[]>
+  },
   cols: {
     type: Array as PropType<ColsType[]>,
     default: () => [],
