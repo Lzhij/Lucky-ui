@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "packageManager": "npm@8.11.0",
   "scripts": {
+    "dev": "vite",
     "prepare": "husky install",
     "format": "prettier --write \"./**/*.{less,html,vue,tsx,ts,jsx,js,json,md}\"",
     "site:dev": "vitepress dev site",
@@ -17,6 +18,7 @@
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
+    "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/runtime-core": "^3.2.47",
     "eslint": "^8.35.0",
