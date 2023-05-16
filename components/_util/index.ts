@@ -52,6 +52,10 @@ export const isFunction = (v: unknown): v is FunctionType => {
   return checkParamType(v) === 'function';
 };
 
+export const isElement = (v: unknown): v is Element => {
+  return v instanceof Element;
+};
+
 export const cloneDeep = <T>(v: T): T => {
   let data: unknown;
   if (isArray(v)) {
