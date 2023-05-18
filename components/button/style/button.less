@@ -26,7 +26,8 @@
   color: @button-text-default;
   background-color: @button-bg-default;
   border-radius: @border-radius;
-  transition: opacity 0.3s, box-shadow 0.3s;
+  transition-property: opacity, box-shadow, border, color;
+  transition-duration: .3s;
   box-sizing: border-box;
   & + .ly-button {
     margin-left: 12px;
