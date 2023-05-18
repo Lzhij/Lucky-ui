@@ -40,7 +40,7 @@ export const isString = (v: unknown): v is string => {
   return checkParamType(v) === 'string';
 };
 
-export const isArray = (v: unknown): v is Array<any> => {
+export const isArray = <T>(v: unknown): v is Array<T> => {
   return checkParamType(v) === 'array';
 };
 
