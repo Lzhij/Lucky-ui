@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import vueJsxPlugin from '@vitejs/plugin-vue-jsx';
 import vue from '@vitejs/plugin-vue';
+import Components from 'unplugin-vue-components/vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineConfig({
   server: {
@@ -9,6 +11,9 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vueJsxPlugin()
+    vueJsxPlugin(),
+    Components({
+      resolvers: [AntDesignVueResolver()]
+    })
   ]
 });
